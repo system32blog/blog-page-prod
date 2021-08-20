@@ -38,7 +38,7 @@
 <a href=https://system32.blog/post/howtopost/ class=nav_item title=Contribute>Contribute </a>
 </div>
 <div class=follow>
-<a href=https://github.com/system32/blog><svg class="icon"><use xlink:href="#github"/></svg>
+<a href=https://github.com/system32blog/blog><svg class="icon"><use xlink:href="#github"/></svg>
 </a>
 <a href=https://system32.blog/index.xml><svg class="icon"><use xlink:href="#rss"/></svg>
 </a>
@@ -57,7 +57,7 @@
 <span><svg class="icon"><use xlink:href="#calendar"/></svg></span>
 <span class=post_date>
 Aug 20, 2021</span>
-<span class=post_time> · 2 min read</span><span>&nbsp;· <a href=https://system32.blog/tags/robin-beismann title="Robin Beismann" class="post_tag button button_translucent">Robin Beismann
+<span class=post_time> · 3 min read</span><span>&nbsp;· <a href=https://system32.blog/tags/robin-beismann title="Robin Beismann" class="post_tag button button_translucent">Robin Beismann
 </a>
 </span>
 <span class=page_only>&nbsp;·
@@ -81,11 +81,12 @@ All content is written in Markdown and hosted on Github which allows anyone to s
 <h1 id=how-to-contribute>How to contribute?</h1>
 <p>To contibute to the block, please fork the repository <a href=https://github.com/system32blog/blog>system32blog/blog</a> and update or add a post under <code>/content/post</code>.
 If your change is ready in your opinion, please raise a pull request to the <code>preview</code> branch on <a href=https://github.com/system32blog/blog>system32blog/blog</a>.</p>
+<p><code>Scroll down further to see a video which describes the process.</code></p>
 <h1 id=preview-posts>Preview posts</h1>
 <p>After your pull request was accepted, you can preview your post on <a href=https://preview.system32.blog>preview.system32.blog</a>.
 We'll review the formatting there and move it into the <code>master</code> branch.</p>
 <h1 id=posting>Posting</h1>
-<p>To submit a new post, please create a new file under <a href=https://github.com/system32blog/blog/tree/preview/content/post><code>/content/post/</code></a> with a meaningful name like <code>grouppolicy.md</code>.</p>
+<p>To submit a new post, please create a new file under <a href=https://github.com/system32blog/blog/tree/preview/content/post><code>/content/post/</code></a> with a meaningful name like <code>20210821_grouppolicy.md</code>, please add the date in the format <code>YYYYMMDD</code> like on the example.</p>
 <p>The post needs a set of metadata information, please follow this guidance.</p>
 <h2 id=syntax>Syntax</h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=ln> 1</span>+++
@@ -110,9 +111,11 @@ We'll review the formatting there and move it into the <code>master</code> branc
 </code></pre></div><p>Feel free to check out the formatting on any other post under <a href=https://github.com/system32blog/blog/tree/preview/content/post><code>/content/post/</code></a>.</p>
 <h2 id=referencing-media>Referencing media</h2>
 <p>If you want to reference pictures or other content in your posts, please submit them under <code>"/static/post/&lt;your post name without extension>"</code>.
-You can then reference them using</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=ln>1</span>![describing text][logo_red.png]
-</code></pre></div><div id=disqus_thread></div>
+You can then reference them using:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=ln>1</span>![<span class=nt>describing text</span>](<span class=na>logo_red.png</span>)
+</code></pre></div><h2 id=how-to-use-visual-studio-code-for-git-in-a-webbrowser>How to use Visual Studio Code for Git in a Webbrowser</h2>
+<p>This animation shows how you can check in posts without any Git Client or Markdown editor on your computer.
+<img src=howtopost.gif alt="example animation"></p><div id=disqus_thread></div>
 <script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//system32-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
 <noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
 <a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>

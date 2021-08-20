@@ -6,11 +6,12 @@ All content is written in Markdown and hosted on Github which allows anyone to s
 &lt;h1 id="how-to-contribute">How to contribute?&lt;/h1>
 &lt;p>To contibute to the block, please fork the repository &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a> and update or add a post under &lt;code>/content/post&lt;/code>.
 If your change is ready in your opinion, please raise a pull request to the &lt;code>preview&lt;/code> branch on &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a>.&lt;/p>
+&lt;p>&lt;code>Scroll down further to see a video which describes the process.&lt;/code>&lt;/p>
 &lt;h1 id="preview-posts">Preview posts&lt;/h1>
 &lt;p>After your pull request was accepted, you can preview your post on &lt;a href="https://preview.system32.blog">preview.system32.blog&lt;/a>.
 We'll review the formatting there and move it into the &lt;code>master&lt;/code> branch.&lt;/p>
 &lt;h1 id="posting">Posting&lt;/h1>
-&lt;p>To submit a new post, please create a new file under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a> with a meaningful name like &lt;code>grouppolicy.md&lt;/code>.&lt;/p>
+&lt;p>To submit a new post, please create a new file under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a> with a meaningful name like &lt;code>20210821_grouppolicy.md&lt;/code>, please add the date in the format &lt;code>YYYYMMDD&lt;/code> like on the example.&lt;/p>
 &lt;p>The post needs a set of metadata information, please follow this guidance.&lt;/p>
 &lt;h2 id="syntax">Syntax&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln"> 1&lt;/span>+++
@@ -35,6 +36,8 @@ We'll review the formatting there and move it into the &lt;code>master&lt;/code>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Feel free to check out the formatting on any other post under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a>.&lt;/p>
 &lt;h2 id="referencing-media">Referencing media&lt;/h2>
 &lt;p>If you want to reference pictures or other content in your posts, please submit them under &lt;code>&amp;quot;/static/post/&amp;lt;your post name without extension&amp;gt;&amp;quot;&lt;/code>.
-You can then reference them using&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln">1&lt;/span>![describing text][logo_red.png]
-&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+You can then reference them using:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln">1&lt;/span>![&lt;span class="nt">describing text&lt;/span>](&lt;span class="na">logo_red.png&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="how-to-use-visual-studio-code-for-git-in-a-webbrowser">How to use Visual Studio Code for Git in a Webbrowser&lt;/h2>
+&lt;p>This animation shows how you can check in posts without any Git Client or Markdown editor on your computer.
+&lt;img src="howtopost.gif" alt="example animation">&lt;/p></description></item></channel></rss>
