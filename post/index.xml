@@ -1,141 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on system32</title><link>https://system32.blog/post/</link><description>Recent content in Posts on system32</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright © 2021, Robin Beismann and the Authors; all rights reserved.</copyright><lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://system32.blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Markdown Syntax Guide</title><link>https://system32.blog/post/markdown-syntax/</link><pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate><guid>https://system32.blog/post/markdown-syntax/</guid><description>
-&lt;p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p>
-&lt;h2 id="headings">Headings&lt;/h2>
-&lt;p>The following HTML &lt;code>&amp;lt;h1&amp;gt;&lt;/code>—&lt;code>&amp;lt;h6&amp;gt;&lt;/code> elements represent six levels of section headings. &lt;code>&amp;lt;h1&amp;gt;&lt;/code> is the highest section level while &lt;code>&amp;lt;h6&amp;gt;&lt;/code> is the lowest.&lt;/p>
-&lt;h1 id="h1">H1&lt;/h1>
-&lt;h2 id="h2">H2&lt;/h2>
-&lt;h3 id="h3">H3&lt;/h3>
-&lt;h4 id="h4">H4&lt;/h4>
-&lt;h5 id="h5">H5&lt;/h5>
-&lt;h6 id="h6">H6&lt;/h6>
-&lt;h2 id="paragraph">Paragraph&lt;/h2>
-&lt;p>Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.&lt;/p>
-&lt;p>Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.&lt;/p>
-&lt;h2 id="blockquotes">Blockquotes&lt;/h2>
-&lt;p>The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a &lt;code>footer&lt;/code> or &lt;code>cite&lt;/code> element, and optionally with in-line changes such as annotations and abbreviations.&lt;/p>
-&lt;h4 id="blockquote-without-attribution">Blockquote without attribution&lt;/h4>
-&lt;blockquote>
-&lt;p>Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-&lt;strong>Note&lt;/strong> that you can use &lt;em>Markdown syntax&lt;/em> within a blockquote.&lt;/p>
-&lt;/blockquote>
-&lt;h4 id="blockquote-with-attribution">Blockquote with attribution&lt;/h4>
-&lt;blockquote>
-&lt;p>Don't communicate by sharing memory, share memory by communicating.&lt;br>
-— &lt;cite>Rob Pike&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/cite>&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="tables">Tables&lt;/h2>
-&lt;p>Tables aren't part of the core Markdown spec, but Hugo supports supports them out-of-the-box.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Name&lt;/th>
-&lt;th>Age&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>Bob&lt;/td>
-&lt;td>27&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Alice&lt;/td>
-&lt;td>23&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="inline-markdown-within-tables">Inline Markdown within tables&lt;/h4>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Italics&lt;/th>
-&lt;th>Bold&lt;/th>
-&lt;th>Code&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;em>italics&lt;/em>&lt;/td>
-&lt;td>&lt;strong>bold&lt;/strong>&lt;/td>
-&lt;td>&lt;code>code&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="code-blocks">Code Blocks&lt;/h2>
-&lt;h4 id="code-block-with-backticks">Code block with backticks&lt;/h4>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;!doctype html&amp;gt;&lt;/span>
-&lt;span class="ln"> 2&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span> &lt;span class="na">lang&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;en&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 3&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 4&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 5&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Example HTML5 Document&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 6&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 7&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 8&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Test&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 9&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln">10&lt;/span>&lt;span class="c">&amp;lt;!-- this line is extraneous 2Error from server (Forbidden): deployments.apps is forbidden: User &amp;#34;chiptest&amp;#34; cannot create resource &amp;#34;deployments&amp;#34; in API group &amp;#34;apps&amp;#34; in the namespace &amp;#34;default&amp;#34; --&amp;gt;&lt;/span>
-&lt;span class="ln">11&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="code-block-indented-with-four-spaces">Code block indented with four spaces&lt;/h4>
-&lt;pre>&lt;code>&amp;lt;!doctype html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-&amp;lt;title&amp;gt;Example HTML5 Document&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-&amp;lt;p&amp;gt;Test&amp;lt;/p&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code>&lt;/pre>
-&lt;h4 id="code-block-with-hugos-internal-highlight-shortcode">Code block with Hugo's internal highlight shortcode&lt;/h4>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="ln"> 1&lt;/span>&lt;span class="cp">&amp;lt;!doctype html&amp;gt;&lt;/span>
-&lt;span class="ln"> 2&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span> &lt;span class="na">lang&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;en&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 3&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 4&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 5&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Example HTML5 Document&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 6&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 7&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 8&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Test&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln"> 9&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="ln">10&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="list-types">List Types&lt;/h2>
-&lt;h4 id="ordered-list">Ordered List&lt;/h4>
-&lt;ol>
-&lt;li>First item&lt;/li>
-&lt;li>Second item&lt;/li>
-&lt;li>Third item&lt;/li>
-&lt;/ol>
-&lt;h4 id="unordered-list">Unordered List&lt;/h4>
-&lt;ul>
-&lt;li>List item&lt;/li>
-&lt;li>Another item&lt;/li>
-&lt;li>And another item&lt;/li>
-&lt;/ul>
-&lt;h4 id="nested-list">Nested list&lt;/h4>
-&lt;ul>
-&lt;li>Fruit
-&lt;ul>
-&lt;li>Apple&lt;/li>
-&lt;li>Orange&lt;/li>
-&lt;li>Banana&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Dairy
-&lt;ul>
-&lt;li>Milk&lt;/li>
-&lt;li>Cheese&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="other-elements--abbr-sub-sup-kbd-mark">Other Elements — abbr, sub, sup, kbd, mark&lt;/h2>
-&lt;p>&lt;abbr title="Graphics Interchange Format">GIF&lt;/abbr> is a bitmap image format.&lt;/p>
-&lt;p>H&lt;sub>2&lt;/sub>O&lt;/p>
-&lt;p>X&lt;sup>n&lt;/sup> + Y&lt;sup>n&lt;/sup> = Z&lt;sup>n&lt;/sup>&lt;/p>
-&lt;p>Press &lt;kbd>&lt;kbd>CTRL&lt;/kbd>+&lt;kbd>ALT&lt;/kbd>+&lt;kbd>Delete&lt;/kbd>&lt;/kbd> to end the session.&lt;/p>
-&lt;p>Most &lt;mark>salamanders&lt;/mark> are nocturnal, and hunt for insects, worms, and other small creatures.&lt;/p>
-&lt;section class="footnotes" role="doc-endnotes">
-&lt;hr>
-&lt;ol>
-&lt;li id="fn:1" role="doc-endnote">
-&lt;p>The above quote is excerpted from Rob Pike's &lt;a href="https://www.youtube.com/watch?v=PAAkCSZUG1c">talk&lt;/a> during Gopherfest, November 18, 2015.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;/section></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on system32</title><link>https://system32.blog/post/</link><description>Recent content in Posts on system32</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 20 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://system32.blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Post and Collaboration Guide</title><link>https://system32.blog/post/howtopost/</link><pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate><guid>https://system32.blog/post/howtopost/</guid><description>
+&lt;p>This article offers a quick guide on how to collaborate on the blog and submit / update posts.&lt;/p>
+&lt;h1 id="introduction">Introduction&lt;/h1>
+&lt;p>The system32.blog is powered by a static site generator called Hugo and the &lt;a href="https://github.com/chipzoller/hugo-clarity">Clarity Theme&lt;/a>.
+All content is written in Markdown and hosted on Github which allows anyone to submit posts or collaborate on existing ones.&lt;/p>
+&lt;h1 id="how-to-contribute">How to contribute?&lt;/h1>
+&lt;p>To contibute to the block, please fork the repository &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a> and update or add a post under &lt;code>/content/post&lt;/code>.
+If your change is ready in your opinion, please raise a pull request to the &lt;code>preview&lt;/code> branch on &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a>.&lt;/p>
+&lt;h1 id="preview-posts">Preview posts&lt;/h1>
+&lt;p>After your pull request was accepted, you can preview your post on &lt;a href="https://preview.system32.blog">preview.system32.blog&lt;/a>.
+We'll review the formatting there and move it into the &lt;code>master&lt;/code> branch.&lt;/p>
+&lt;h1 id="posting">Posting&lt;/h1>
+&lt;p>To submit a new post, please create a new file under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a> with a meaningful name like &lt;code>grouppolicy.md&lt;/code>.&lt;/p>
+&lt;p>The post needs a set of metadata information, please follow this guidance.&lt;/p>
+&lt;h2 id="syntax">Syntax&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln"> 1&lt;/span>+++
+&lt;span class="ln"> 2&lt;/span>title = &amp;#34;Post and Collaboration Guide&amp;#34; &lt;span class="c">&amp;lt;!--- A meaningful title ---&amp;gt;&lt;/span>
+&lt;span class="ln"> 3&lt;/span>date = &amp;#34;2021-08-20&amp;#34; # Date in Format yyyy-MM-dd ---&amp;gt;
+&lt;span class="ln"> 4&lt;/span>description = &amp;#34;An article describing the process to collaborate on the blog.&amp;#34; &lt;span class="c">&amp;lt;!--- A short description for the search engine ---&amp;gt;&lt;/span>
+&lt;span class="ln"> 5&lt;/span>featured = false &lt;span class="c">&amp;lt;!--- Please don&amp;#39;t change ---&amp;gt;&lt;/span>
+&lt;span class="ln"> 6&lt;/span>tags = [
+&lt;span class="ln"> 7&lt;/span> &amp;#34;Robin Beismann&amp;#34; &lt;span class="c">&amp;lt;!--- Put yourself as author here, realname, nickname or github username is fine ---&amp;gt;&lt;/span>
+&lt;span class="ln"> 8&lt;/span>]
+&lt;span class="ln"> 9&lt;/span>categories = [
+&lt;span class="ln">10&lt;/span> &amp;#34;blogging&amp;#34; &lt;span class="c">&amp;lt;!--- Categories, please have a look at the existing ones or invent a new one if there is none that fits ---&amp;gt;&lt;/span>
+&lt;span class="ln">11&lt;/span>]
+&lt;span class="ln">12&lt;/span>series = [&amp;#34;&amp;#34;] &lt;span class="c">&amp;lt;!--- If this is a blog series, put a meaningful name here, otherwise leave empty ---&amp;gt;&lt;/span>
+&lt;span class="ln">13&lt;/span>thumbnail = &amp;#34;images/building.png&amp;#34; &lt;span class="c">&amp;lt;!--- Use one of the thumbnails under /images/ or submit a new one. Please note that you need to have the rights on it. ---&amp;gt;&lt;/span>
+&lt;span class="ln">14&lt;/span>+++ &lt;span class="c">&amp;lt;!--- This is a separator, please leave in-place ---&amp;gt;&lt;/span>
+&lt;span class="ln">15&lt;/span>This article offers a quick guide on how to collaborate on the blog and submit / update posts. &lt;span class="c">&amp;lt;!--- The preview line the start page, please leave the next line in-place ---&amp;gt;&lt;/span>
+&lt;span class="ln">16&lt;/span>&lt;span class="c">&amp;lt;!--more--&amp;gt;&lt;/span>
+&lt;span class="ln">17&lt;/span>
+&lt;span class="ln">18&lt;/span>&lt;span class="gh"># First heading
+&lt;/span>&lt;span class="ln">19&lt;/span>&lt;span class="gh">&lt;/span>More text to follow
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Feel free to check out the formatting on any other post under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a>.&lt;/p>
+&lt;h2 id="referencing-media">Referencing media&lt;/h2>
+&lt;p>If you want to reference pictures or other content in your posts, please submit them under &lt;code>&amp;quot;/static/post/&amp;lt;your post name without extension&amp;gt;&amp;quot;&lt;/code>.
+You can then reference them using&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln">1&lt;/span>![describing text][logo_red.png]
+&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
