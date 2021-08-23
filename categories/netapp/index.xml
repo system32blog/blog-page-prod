@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on system32</title><link>https://system32.blog/post/</link><description>Recent content in Posts on system32</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 23 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://system32.blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>PowerShell NetApp SnapMirror Destination Migration</title><link>https://system32.blog/post/netappsnapmirrorposhmigration/</link><pubDate>Mon, 23 Aug 2021 00:00:00 +0000</pubDate><guid>https://system32.blog/post/netappsnapmirrorposhmigration/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NetApp on system32</title><link>https://system32.blog/categories/netapp/</link><description>Recent content in NetApp on system32</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 23 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://system32.blog/categories/netapp/index.xml" rel="self" type="application/rss+xml"/><item><title>PowerShell NetApp SnapMirror Destination Migration</title><link>https://system32.blog/post/netappsnapmirrorposhmigration/</link><pubDate>Mon, 23 Aug 2021 00:00:00 +0000</pubDate><guid>https://system32.blog/post/netappsnapmirrorposhmigration/</guid><description>
 &lt;p>This article shows how to use PowerShell and the NetApp PowerShell Module to migrate all NetApp SnapVault/SnapMirror relationships to a new system.
 The script also builds the SVM Relationships and does the cutovers of the relationships on the source ONTAP Systems.&lt;/p>
 &lt;p>&lt;code>Disclaimer: This content and scripts are provided free of charge and I do not take any responsability for them nor any harm they may cause, it is up to you to review and test them properly before deploying them anywhere.&lt;/code>&lt;/p>
@@ -233,48 +233,4 @@ On the first run, it will ask you for credentials for both, the old and the new 
 &lt;span class="ln">202&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;span class="ln">203&lt;/span>
 &lt;span class="ln">204&lt;/span>&lt;span class="c">#endregion&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Post and Collaboration Guide</title><link>https://system32.blog/post/howtopost/</link><pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate><guid>https://system32.blog/post/howtopost/</guid><description>
-&lt;p>This article offers a quick guide on how to collaborate on the blog and submit / update posts.&lt;/p>
-&lt;h1 id="introduction">Introduction&lt;/h1>
-&lt;p>The system32.blog is powered by a static site generator called Hugo and the &lt;a href="https://github.com/chipzoller/hugo-clarity">Clarity Theme&lt;/a>.
-All content is written in Markdown and hosted on Github which allows anyone to submit posts or collaborate on existing ones.&lt;/p>
-&lt;h1 id="how-to-contribute">How to contribute?&lt;/h1>
-&lt;p>To contibute to the block, please fork the repository &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a> and update or add a post under &lt;code>/content/post&lt;/code>.
-If your change is ready in your opinion, please raise a pull request to the &lt;code>preview&lt;/code> branch on &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a>.&lt;/p>
-&lt;p>&lt;code>Scroll down further to see a video which describes the process.&lt;/code>&lt;/p>
-&lt;h2 id="license">License&lt;/h2>
-&lt;p>Please note that all content you submit will fall under the &lt;a href="https://github.com/system32blog/blog/blob/preview/LICENSE">MIT License&lt;/a>. We will remove blog posts based on the authors request, but the content will stay in the Git Revision history.&lt;/p>
-&lt;h1 id="preview-posts">Preview posts&lt;/h1>
-&lt;p>After your pull request was accepted, you can preview your post on &lt;a href="https://preview.system32.blog">preview.system32.blog&lt;/a>.
-We'll review the formatting there and move it into the &lt;code>master&lt;/code> branch.&lt;/p>
-&lt;h1 id="posting">Posting&lt;/h1>
-&lt;p>To submit a new post, please create a new file under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a> with a meaningful name like &lt;code>whataregrouppolicypreferences.md&lt;/code>.
-The post needs a set of metadata information, please follow this guidance.&lt;/p>
-&lt;h2 id="syntax">Syntax&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln"> 1&lt;/span>+++
-&lt;span class="ln"> 2&lt;/span>title = &amp;#34;Post and Collaboration Guide&amp;#34; &lt;span class="c">&amp;lt;!--- A meaningful title ---&amp;gt;&lt;/span>
-&lt;span class="ln"> 3&lt;/span>date = &amp;#34;2021-08-20&amp;#34; # Date in Format yyyy-MM-dd ---&amp;gt;
-&lt;span class="ln"> 4&lt;/span>description = &amp;#34;An article describing the process to collaborate on the blog.&amp;#34; &lt;span class="c">&amp;lt;!--- A short description for the search engine ---&amp;gt;&lt;/span>
-&lt;span class="ln"> 5&lt;/span>featured = false &lt;span class="c">&amp;lt;!--- Please don&amp;#39;t change ---&amp;gt;&lt;/span>
-&lt;span class="ln"> 6&lt;/span>tags = [
-&lt;span class="ln"> 7&lt;/span> &amp;#34;Robin Beismann&amp;#34; &lt;span class="c">&amp;lt;!--- Put yourself as author here, realname, nickname or github username is fine ---&amp;gt;&lt;/span>
-&lt;span class="ln"> 8&lt;/span>]
-&lt;span class="ln"> 9&lt;/span>categories = [
-&lt;span class="ln">10&lt;/span> &amp;#34;blogging&amp;#34; &lt;span class="c">&amp;lt;!--- Categories, please have a look at the existing ones or invent a new one if there is none that fits ---&amp;gt;&lt;/span>
-&lt;span class="ln">11&lt;/span>]
-&lt;span class="ln">12&lt;/span>series = [&amp;#34;&amp;#34;] &lt;span class="c">&amp;lt;!--- If this is a blog series, put a meaningful name here, otherwise leave empty ---&amp;gt;&lt;/span>
-&lt;span class="ln">13&lt;/span>thumbnail = &amp;#34;images/building.png&amp;#34; &lt;span class="c">&amp;lt;!--- Use one of the thumbnails under /images/ or submit a new one. Please note that you need to have the rights on it. ---&amp;gt;&lt;/span>
-&lt;span class="ln">14&lt;/span>+++ &lt;span class="c">&amp;lt;!--- This is a separator, please leave in-place ---&amp;gt;&lt;/span>
-&lt;span class="ln">15&lt;/span>This article offers a quick guide on how to collaborate on the blog and submit / update posts. &lt;span class="c">&amp;lt;!--- The preview line the start page, please leave the next line in-place ---&amp;gt;&lt;/span>
-&lt;span class="ln">16&lt;/span>&lt;span class="c">&amp;lt;!--more--&amp;gt;&lt;/span>
-&lt;span class="ln">17&lt;/span>
-&lt;span class="ln">18&lt;/span>&lt;span class="gh"># First heading
-&lt;/span>&lt;span class="ln">19&lt;/span>&lt;span class="gh">&lt;/span>More text to follow
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Feel free to check out the formatting on any other post under &lt;a href="https://github.com/system32blog/blog/tree/preview/content/post">&lt;code>/content/post/&lt;/code>&lt;/a>.&lt;/p>
-&lt;h2 id="referencing-media">Referencing media&lt;/h2>
-&lt;p>If you want to reference pictures or other content in your posts, please submit them under &lt;code>&amp;quot;/static/post/&amp;lt;your post name without extension&amp;gt;&amp;quot;&lt;/code>.
-You can then reference them using:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="ln">1&lt;/span>![&lt;span class="nt">describing text&lt;/span>](&lt;span class="na">logo_red.png&lt;/span>)
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="how-to-use-visual-studio-code-for-git-in-a-webbrowser">How to use Visual Studio Code for Git in a Webbrowser&lt;/h2>
-&lt;p>This animation shows how you can check in posts without any Git Client or Markdown editor on your computer.
-&lt;img src="howtopost.gif" alt="example animation">&lt;/p></description></item></channel></rss>
+&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

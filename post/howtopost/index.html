@@ -82,12 +82,14 @@ All content is written in Markdown and hosted on Github which allows anyone to s
 <p>To contibute to the block, please fork the repository <a href=https://github.com/system32blog/blog>system32blog/blog</a> and update or add a post under <code>/content/post</code>.
 If your change is ready in your opinion, please raise a pull request to the <code>preview</code> branch on <a href=https://github.com/system32blog/blog>system32blog/blog</a>.</p>
 <p><code>Scroll down further to see a video which describes the process.</code></p>
+<h2 id=license>License</h2>
+<p>Please note that all content you submit will fall under the <a href=https://github.com/system32blog/blog/blob/preview/LICENSE>MIT License</a>. We will remove blog posts based on the authors request, but the content will stay in the Git Revision history.</p>
 <h1 id=preview-posts>Preview posts</h1>
 <p>After your pull request was accepted, you can preview your post on <a href=https://preview.system32.blog>preview.system32.blog</a>.
 We'll review the formatting there and move it into the <code>master</code> branch.</p>
 <h1 id=posting>Posting</h1>
-<p>To submit a new post, please create a new file under <a href=https://github.com/system32blog/blog/tree/preview/content/post><code>/content/post/</code></a> with a meaningful name like <code>20210821_grouppolicy.md</code>, please add the date in the format <code>YYYYMMDD</code> like on the example.</p>
-<p>The post needs a set of metadata information, please follow this guidance.</p>
+<p>To submit a new post, please create a new file under <a href=https://github.com/system32blog/blog/tree/preview/content/post><code>/content/post/</code></a> with a meaningful name like <code>whataregrouppolicypreferences.md</code>.
+The post needs a set of metadata information, please follow this guidance.</p>
 <h2 id=syntax>Syntax</h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=ln> 1</span>+++
 <span class=ln> 2</span>title = &#34;Post and Collaboration Guide&#34; <span class=c>&lt;!--- A meaningful title ---&gt;</span>
@@ -122,14 +124,35 @@ You can then reference them using:</p>
 </article>
 <aside class=sidebar>
 <section class=sidebar_inner>
+<h2 class=mt-4>Featured Posts</h2>
+<ul>
+<li>
+<a href=https://system32.blog/post/netappsnapmirrorposhmigration/ class=nav-link title="PowerShell NetApp SnapMirror Destination Migration">PowerShell NetApp SnapMirror Destination Migration</a>
+</li>
+</ul>
 <h2 class=mt-4>Recent Posts</h2>
 <ul class=flex-column>
+<li>
+<a href=https://system32.blog/post/netappsnapmirrorposhmigration/ class=nav-link title="PowerShell NetApp SnapMirror Destination Migration">PowerShell NetApp SnapMirror Destination Migration</a>
+</li>
 </ul>
 <div>
 <h2 class="mt-4 taxonomy" id=categories-section>categories</h2>
 <nav class=tags_nav>
 <a href=https://system32.blog/categories/blogging/ class="post_tag button button_translucent" title=blogging>
 BLOGGING
+<span class=button_tally>1</span>
+</a>
+<a href=https://system32.blog/categories/migration/ class="post_tag button button_translucent" title=migration>
+MIGRATION
+<span class=button_tally>1</span>
+</a>
+<a href=https://system32.blog/categories/netapp/ class="post_tag button button_translucent" title=netapp>
+NETAPP
+<span class=button_tally>1</span>
+</a>
+<a href=https://system32.blog/categories/snapmirror/ class="post_tag button button_translucent" title=snapmirror>
+SNAPMIRROR
 <span class=button_tally>1</span>
 </a>
 </nav>
@@ -139,7 +162,7 @@ BLOGGING
 <nav class=tags_nav>
 <a href=https://system32.blog/tags/robin-beismann/ class="post_tag button button_translucent" title=robin-beismann>
 ROBIN-BEISMANN
-<span class=button_tally>1</span>
+<span class=button_tally>2</span>
 </a>
 </nav>
 </div>
