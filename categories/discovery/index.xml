@@ -7,7 +7,7 @@ One downside of this is the fact, that everytime you run this discovery, it adds
 &lt;p>To workaround this, I've build a PowerShell script that you can run as scheduled job to automatically discover any kind of discoverable sensor.&lt;/p>
 &lt;p>The script is also able to send you a summary of what it discovered and created directly into your Teams Channel (via an Webhook Connector).&lt;/p>
 &lt;h1 id="how-does-it-work">How does it work?&lt;/h1>
-&lt;p>The script uses PRTGs inbuilt API and the PowerShell Module &amp;quot;PrtgAPI&amp;quot; (&lt;a href="https://github.com/lordmilko/PrtgAPI">https://github.com/lordmilko/PrtgAPI&lt;/a>) to invoke a sensor discovery for a specific sensor on a device or a group of devices.
+&lt;p>The script uses PRTGs inbuilt API and the PowerShell Module &amp;quot;PrtgApi&amp;quot; (&lt;a href="https://github.com/lordmilko/PrtgApi">https://github.com/lordmilko/PrtgApi&lt;/a>) to invoke a sensor discovery for a specific sensor on a device or a group of devices.
 After that it loops through the existing sensors to detect if there are any that are not explicitly excluded or already existent.&lt;/p>
 &lt;p>The script has the following features and attributes per sensor type:&lt;/p>
 &lt;ul>
@@ -17,26 +17,26 @@ After that it loops through the existing sensors to detect if there are any that
 &lt;li>NameFilter: A wildcard aware filter of devices the script shall run for. Do all your Windows Servers starts with &amp;quot;WSRV&amp;quot;? Great! Enter &amp;quot;WSRV*&amp;quot; into the NameFilter and you'll avoid unnecessary discoveries on not applicable devices. If not, just let the asterix in.&lt;/li>
 &lt;li>AttributeName: The attribute name out of which the script shall extract the discovered sensors. This differs per sensor. You can find the correct property by running &lt;code>New-SensorParameters&lt;/code> on a device.&lt;/li>
 &lt;li>ExclusionList: An array of occurences to ignore, in the existing sensor types below, you can find some examples. This exclusion list also supports wildcards.&lt;/li>
-&lt;li>MaxSensors: A threshhold of how many sensors to discover per device. Exceeding this limit will fire an error message.&lt;/li>
+&lt;li>MaxSensors: A threshold of how many sensors to discover per device. Exceeding this limit will fire an error message.&lt;/li>
 &lt;li>DiscoveryInterval: A limitation of how often this Sensor Type discovery shall run, meaning that even if the script is executed multiple times in a row, if the discovery interval is not yet due again, it will skip this sensor type. An example of this would be disk sensors, discovering them all few days will be more than enough. Windows services however might pop up more often and therefor require a more frequent discovery. The last discovery is saved in the current user registry for each device, if you run the script on another device or under an other user context, it will start fresh.&lt;/li>
 &lt;li>NameExtractionSB: An additional scriptblock that's being run against the object &lt;code>t&lt;/code> to extract the individual element name out of a device. This might be required for devices that return inconsistent or badly formatted informations around the actual device name. The &lt;code>Cisco UCS Disks&lt;/code> Sensor Type shows an example of it.&lt;/li>
 &lt;/ul>
 &lt;h1 id="how-to-use-it">How to use it&lt;/h1>
 &lt;p>To use the script, you will need to populate the following environment variables before you execute the script:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-PowerShell" data-lang="PowerShell">&lt;span class="ln"> 1&lt;/span>&lt;span class="c"># Required&lt;/span>
-&lt;span class="ln"> 2&lt;/span>&lt;span class="c">## PRTG server url&lt;/span>
-&lt;span class="ln"> 3&lt;/span>&lt;span class="nv">$env:PRTGUrl&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://prtg.internaldomain.com&amp;#34;&lt;/span>
-&lt;span class="ln"> 4&lt;/span>&lt;span class="c">## PRTG Username&lt;/span>
-&lt;span class="ln"> 5&lt;/span>&lt;span class="nv">$env:PRTGUsername&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;svc-discovery&amp;#34;&lt;/span>
-&lt;span class="ln"> 6&lt;/span>&lt;span class="c">## PRTG Password&lt;/span>
-&lt;span class="ln"> 7&lt;/span>&lt;span class="nv">$env:PRTGPassword&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;bacon&amp;#34;&lt;/span>
-&lt;span class="ln"> 8&lt;/span>
-&lt;span class="ln"> 9&lt;/span>&lt;span class="c"># Optional&lt;/span>
-&lt;span class="ln">10&lt;/span>&lt;span class="c">## A teams webhook to sent a summary of discovered sensors to (if any)&lt;/span>
-&lt;span class="ln">11&lt;/span>&lt;span class="nv">$env:TeamsURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://yourtenant.webhook.office.com/webhookb2/..&amp;#34;&lt;/span>
-&lt;span class="ln">12&lt;/span>&lt;span class="c">## A teams webhook to sent a summary of discovered sensors to (if any) while using VSCode to work on the script&lt;/span>
-&lt;span class="ln">13&lt;/span>&lt;span class="nv">$env:TeamsStagingURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://yourtenant.webhook.office.com/webhookb2/..&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Depending on the number of items you got in the specified groups, it will take some time (minutes to hours) to discover the Sensor Types defined below.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-PowerShell" data-lang="PowerShell">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="c"># Required&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">&lt;span class="c">## PRTG server url&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">&lt;span class="nv">$env:PRTGUrl&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://prtg.internaldomain.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="c">## PRTG Username&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">&lt;span class="nv">$env:PRTGUsername&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;svc-discovery&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">&lt;span class="c">## PRTG Password&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="nv">$env:PRTGPassword&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;bacon&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">&lt;span class="c"># Optional&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">&lt;span class="c">## A teams webhook to sent a summary of discovered sensors to (if any)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">&lt;span class="nv">$env:TeamsURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://yourtenant.webhook.office.com/webhookb2/..&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">&lt;span class="c">## A teams webhook to sent a summary of discovered sensors to (if any) while using VSCode to work on the script&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">13&lt;/span>&lt;span class="cl">&lt;span class="nv">$env:TeamsStagingURL&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://yourtenant.webhook.office.com/webhookb2/..&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Depending on the number of items you got in the specified groups, it will take some time (minutes to hours) to discover the Sensor Types defined below.&lt;/p>
 &lt;h2 id="predefined-sensor-types">Predefined Sensor Types&lt;/h2>
 &lt;p>There is already a bunch of sensor types defined in the script, feel free to either keep them or delete them out of the hashtable. Those are the ones I've developed the script for and are actively used in my work environment.&lt;/p>
 &lt;ul>
