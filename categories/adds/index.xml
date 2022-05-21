@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ADDS on system32</title><link>https://system32.blog/categories/adds/</link><description>Recent content in ADDS on system32</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 20 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://system32.blog/categories/adds/index.xml" rel="self" type="application/rss+xml"/><item><title>AD Authentication Issues 2022-05 May Patches / Mapping Certificates to AD Objects</title><link>https://system32.blog/post/adsmapcertificates/</link><pubDate>Fri, 20 May 2022 00:00:00 +0000</pubDate><guid>https://system32.blog/post/adsmapcertificates/</guid><description>
+&lt;p>This article shows how to use PowerShell to address the issues that come with the new StrongCertificateBindingEnforcement security feature of Active Directory by mapping the existing/already enrolled certificates to their respective AD account (whether computer or user).&lt;/p>
+&lt;p>&lt;code>Disclaimer: This content and scripts are provided free of charge and I do not take any responsability for them nor any harm they may cause, it is up to you to review and test them properly before deploying them anywhere.&lt;/code>&lt;/p>
+&lt;h1 id="introduction">Introduction&lt;/h1>
+&lt;p>Many organizations were hit a bit unprepared by this months' patchday which introduces a new security feature called &amp;quot;StrongCertificateBindingEnforcement&amp;quot; that ended up breaking authentication on various important Windows roles such as Network Policy Servers (NPS) or Routing and Remote Access Service (RRAS) when authenticating via certificates.&lt;/p>
+&lt;p>While Microsoft already released hotfixes to address an issue where the AD Object was not properly matched to the Certificate it uses, there are still many users facing issues.&lt;/p>
+&lt;p>It is possible to disable this new behavior by setting the registry property &lt;code>HKLM\SYSTEM\CurrentControlSet\Services\Kdc\StrongCertificateBindingEnforcement&lt;/code> to &lt;code>REG_DWORD:0x00000000&lt;/code>. However this disables the security mitigations that Microsoft introduced during this patch day (for a good reason!).&lt;/p>
+&lt;p>Mitigating the actual issue will require multiple steps in many environments, therefor please follow the next paragraphs.&lt;/p>
+&lt;h1 id="issue-mitigation-steps">Issue Mitigation Steps&lt;/h1>
+&lt;p>In this post, I will address different topics you should take into account when addressing this issue in your environment.&lt;/p>
+&lt;h2 id="1-applying-the-hotfixes">1. Applying the Hotfixes&lt;/h2>
+&lt;p>First off, apply the hotfixes Microsoft released on 2022/05/20 to make sure that you're not walking into the previously introduced bug.&lt;/p>
+&lt;p>As for the modern operating systems, all you need is to install the following cumulative updates depending on the OS (installation of the previous 2022-05 updates is not required):&lt;/p>
+&lt;ul>
+&lt;li>Windows Server 2022: &lt;a href="https://support.microsoft.com/help/5015013">​KB5015013&lt;/a>&lt;/li>
+&lt;li>Windows Server version 20H2: ​&lt;a href="https://support.microsoft.com/help/5015020">KB5015020&lt;/a>&lt;/li>
+&lt;li>Windows Server 2019: &lt;a href="https://support.microsoft.com/help/5015018">KB5015018&lt;/a>&lt;/li>
+&lt;li>Windows Server 2016: ​&lt;a href="https://support.microsoft.com/help/5015019">KB5015019&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>On the older OSes which do not follow the modern update pattern with cumulative updates, you will first have to update your OS before applying one of the following hotfixes:&lt;/p>
+&lt;ul>
+&lt;li>Windows Server 2012 R2: &lt;a href="https://support.microsoft.com/help/5014986">KB5014986&lt;/a>&lt;/li>
+&lt;li>Windows Server 2012: &lt;a href="https://support.microsoft.com/help/5014991">KB5014991&lt;/a>&lt;/li>
+&lt;li>Windows Server 2008 R2 SP1: &lt;a href="https://support.microsoft.com/help/5014987">KB5014987&lt;/a>&lt;/li>
+&lt;li>Windows Server 2008 SP2: &lt;a href="https://support.microsoft.com/help/5014990">KB5014990&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-adding-userprincipalname-to-the-certificate-templates">2. Adding userPrincipalName to the Certificate Templates&lt;/h2>
+&lt;p>While this is not mentioned in any of the official support articles, you will need to make sure that the Certificate Template your clients are using does include the userPrincipalName (UPN) in the Subject Alternative Name (SAN) as shown on this screenshot:&lt;/p>
+&lt;p>&lt;img src="templatesubject.png" alt="Template">&lt;/p>
+&lt;h2 id="3-updating-adcs-and-re-enrolling-certificates">3. Updating ADCS and re-enrolling Certificates&lt;/h2>
+&lt;p>After applying the 2022-05 Cumulative Updates to your Enterprise Issuing CAs, you will see that each enrolled certificate has a new property with the OID &lt;code>1.3.6.1.4.1.311.25.2&lt;/code> under &amp;quot;Details&amp;quot;. This new property holds the SID of the AD account that enrolled it.
+To map existing certificates, please see the next paragraph.&lt;/p>
+&lt;p>&lt;img src="oid.png" alt="Template">&lt;/p>
+&lt;h1 id="mapping-existing-certificates-to-their-ad-object">Mapping existing certificates to their AD Object&lt;/h1>
+&lt;p>&lt;code>Hint: For this to work, your Templates already need to include the UserPrincipalName as described above&lt;/code>&lt;/p>
+&lt;h2 id="background-information">Background Information&lt;/h2>
+&lt;p>To avoid having to wait for all clients to re-enroll their certificate, you can map them to the AD Objects manually, however this is a lot of manual effort.&lt;/p>
+&lt;p>Mapping certificates is archived by adding an certain identifiers of the previously issued certificates to the &lt;code>altSecurityIdentities&lt;/code> attribute of the AD Object. This identifier can be built using the following ways, some of them are not explicitly unique to the certificate and should therefor be avoided.&lt;/p>
+&lt;p>The recommended way to map it is using the certificate serial number in conjunction with the CA Name for example &lt;code>X509:&amp;lt;I&amp;gt;DC=com,DC=contoso,CN=CONTOSO-DC-CA&amp;lt;SR&amp;gt;1200000000AC11000000002B&lt;/code>.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Mapping&lt;/th>
+&lt;th>Example&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Remarks&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>X509IssuerSubject&lt;/td>
+&lt;td>&amp;quot;X509:&lt;I>IssuerName&lt;S>SubjectName&amp;quot;&lt;/td>
+&lt;td>Weak&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>X509SubjectOnly&lt;/td>
+&lt;td>&amp;quot;X509:&lt;S>SubjectName&amp;quot;&lt;/td>
+&lt;td>Weak&lt;/td>
+&lt;td>Text&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>X509RFC822&lt;/td>
+&lt;td>&amp;quot;X509:&lt;RFC822>&lt;a href="mailto:user@contoso.com">user@contoso.com&lt;/a>&amp;quot;&lt;/td>
+&lt;td>Weak&lt;/td>
+&lt;td>EmailAddress&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>X509IssuerSerialNumber&lt;/td>
+&lt;td>&amp;quot;X509:&lt;I>IssuerName&lt;SR>1234567890&amp;quot;&lt;/td>
+&lt;td>Strong&lt;/td>
+&lt;td>Recommended&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>X509SKI&lt;/td>
+&lt;td>&amp;quot;X509:&lt;SKI>123456789abcdef&amp;quot;&lt;/td>
+&lt;td>Strong&lt;/td>
+&lt;td>Text&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>X509SHA1PublicKey&lt;/td>
+&lt;td>&amp;quot;X509:&lt;SHA1-PUKEY>123456789abcdef&amp;quot;&lt;/td>
+&lt;td>Strong&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://support.microsoft.com/de-de/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16#bkmk_certmap">Source - support.microsoft.com&lt;/a>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>For this approach, the binary order of the serial number needs to be added backwards and the CA Name needs to be read backwards as well. As quoted &lt;a href="https://support.microsoft.com/de-de/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16#bkmk_certmap">here&lt;/a>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">Note that when you reverse the SerialNumber, you must keep the byte order. This means that reversing the SerialNumber “A1B2C3” should result in the string “C3B2A1” and not “3C2B1A”. For more information, see HowTo: Map a user to a certificate via all the methods available in the altSecurityIdentities attribute.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="mapping-using-powershell">Mapping using PowerShell&lt;/h2>
+&lt;p>Luckily PowerShell comes into play here and allows us to read the existing enrolled certificates from the Enterprise CA and automatically set them on the AD Object in question (no matter if user account or computer account).
+The script has cross-domain support and will ask you for credentials for all trusted domains where the Enterprise CA issued certificates to.&lt;/p>
+&lt;p>To use the script, you will need to populate the following environment variables before you execute the script:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-PowerShell" data-lang="PowerShell">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="no">[string]&lt;/span>&lt;span class="nv">$CertAuthority&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;lt;pkiname&amp;gt;&amp;#34;&lt;/span> &lt;span class="c"># Server Name of the Enterprise CA is enough&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="no">[array]&lt;/span>&lt;span class="nv">$CertTemplates&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;DeviceCert&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;UserCert&amp;#39;&lt;/span> &lt;span class="c"># List of Certificate Templates to process&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="no">[bool]&lt;/span>&lt;span class="nv">$DryRun&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nv">$true&lt;/span> &lt;span class="c"># With DryRun = $true, the script will not do any changes but will show you the impact&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will also need to install the &lt;code>PSPKI&lt;/code> Module which is available &lt;a href="https://www.pkisolutions.com/tools/pspki/">here&lt;/a> or in the PS Gallery.&lt;/p>
+&lt;p>You can find the script here: &lt;a href="https://github.com/system32blog/blog/blob/master/static/post/adsmapcertificates/Invoke-ADCSCertMapping.ps1">https://github.com/system32blog/blog/blob/master/static/post/adsmapcertificates/Invoke-ADCSCertMapping.ps1&lt;/a>&lt;/p></description></item></channel></rss>

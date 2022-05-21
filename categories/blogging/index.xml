@@ -6,6 +6,7 @@ All content is written in Markdown and hosted on Github which allows anyone to s
 &lt;h1 id="how-to-contribute">How to contribute?&lt;/h1>
 &lt;p>To contribute to the block, please fork the repository &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a> and update or add a post under &lt;code>/content/post&lt;/code>.
 If your change is ready in your opinion, please raise a pull request to the &lt;code>preview&lt;/code> branch on &lt;a href="https://github.com/system32blog/blog">system32blog/blog&lt;/a>.&lt;/p>
+&lt;p>After raising the pull request, a spellcheck action will check your spelling. If the action fails, please review its' output and correct if required. If there are words that need to be whitelisted, please add them to the &lt;code>wordlist.txt&lt;/code> in the repository root and commit them. The pull request will check again.&lt;/p>
 &lt;p>&lt;code>Scroll down further to see a video which describes the process.&lt;/code>&lt;/p>
 &lt;h2 id="license">License&lt;/h2>
 &lt;p>Please note that all content you submit will fall under the &lt;a href="https://github.com/system32blog/blog/blob/preview/LICENSE">MIT License&lt;/a>. We will remove blog posts based on the authors request, but the content will stay in the Git Revision history.&lt;/p>
